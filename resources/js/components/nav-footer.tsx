@@ -2,6 +2,7 @@ import {
     ChevronRight,
     Code2,
     ExternalLink,
+    FolderGit2,
     Github,
     Globe,
     Linkedin,
@@ -67,6 +68,28 @@ export function NavFooter({
         >
             <SidebarGroupContent>
                 <SidebarMenu>
+                    {/* Repository Link (Above Developer) */}
+                    <SidebarMenuItem>
+                        <SidebarMenuButton
+                            asChild
+                            tooltip="Repository"
+                            className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-100 cursor-pointer"
+                        >
+                            <a
+                                href="https://github.com/alfinmuzakkiiman/Full-Featured_Authentication_System"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <FolderGit2 className="h-5 w-5 text-primary" />
+                                <span className="font-medium">Repository</span>
+                                {!isCollapsed && (
+                                    <ExternalLink className="ml-auto h-3 w-3 text-muted-foreground/60" />
+                                )}
+                            </a>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+
+                    {/* Developer Section */}
                     {isCollapsed ? (
                         /* Collapsed Icon Mode: DropdownMenu popover */
                         <SidebarMenuItem>

@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import { Github, Globe, LayoutGrid, Linkedin, Menu, Search } from 'lucide-react';
+import { FolderGit2, Github, Globe, LayoutGrid, Linkedin, Menu, Search } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import AppLogoIcon from '@/components/app-logo-icon';
 import { Breadcrumbs } from '@/components/breadcrumbs';
@@ -48,6 +48,11 @@ const mainNavItems: NavItem[] = [
 ];
 
 const rightNavItems: NavItem[] = [
+    {
+        title: 'Repository',
+        href: 'https://github.com/alfinmuzakkiiman/Full-Featured_Authentication_System',
+        icon: FolderGit2,
+    },
     {
         title: 'LinkedIn',
         href: 'https://www.linkedin.com/in/alfin-muzakki-iman-14b889375/',
