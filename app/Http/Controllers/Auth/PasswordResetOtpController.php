@@ -54,11 +54,16 @@ class PasswordResetOtpController extends Controller
             ]);
         }
 
-        $this->otpService->generate($user, 'password_reset');
+        $otp = $this->otpService->generate($user, 'password_reset');
 
         $request->session()->put('password_reset_email', $user->email);
 
-        return redirect()->route('password.reset')->with('status', 'Kode verifikasi 6-digit telah dikirimkan ke email Anda.');
+        $status = 'Kode verifikasi 6-digit telah dikirimkan ke email Anda.';
+        if (config('app.show_demo_otp')) {
+            $status .= " (Mode Demo OTP: {$otp['code']})";
+        }
+
+        return redirect()->route('password.reset')->with('status', $status);
     }
 
     /**
@@ -112,9 +117,14 @@ class PasswordResetOtpController extends Controller
             ]);
         }
 
-        $this->otpService->generate($user, 'password_reset');
+        $otp = $this->otpService->generate($user, 'password_reset');
 
-        return back()->with('status', 'Kode verifikasi baru telah dikirimkan ke email Anda.');
+        $status = 'Kode verifikasi baru telah dikirimkan ke email Anda.';
+        if (config('app.show_demo_otp')) {
+            $status .= " (Mode Demo OTP: {$otp['code']})";
+        }
+
+        return back()->with('status', $status);
     }
 
     /**
