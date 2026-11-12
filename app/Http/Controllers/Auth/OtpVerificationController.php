@@ -8,6 +8,7 @@ use App\Services\OtpService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -28,6 +29,10 @@ class OtpVerificationController extends Controller
 
         if ($userId = $request->session()->get('pending_user_id')) {
             return User::find($userId);
+        }
+
+        if ($email = $request->input('email')) {
+            return User::where('email', Str::lower($email))->first();
         }
 
         return null;

@@ -46,7 +46,7 @@ export default function VerifyEmail({ email, status, cooldown = 0 }: Props) {
         setResending(true);
         router.post(
             '/resend-otp',
-            {},
+            { email },
             {
                 onFinish: () => {
                     setResending(false);

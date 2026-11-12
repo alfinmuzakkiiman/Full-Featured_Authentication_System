@@ -74,7 +74,7 @@ class OtpService
             return 0;
         }
 
-        $elapsedSeconds = now()->diffInSeconds($lastRecord->created_at);
+        $elapsedSeconds = (int) abs(now()->diffInSeconds($lastRecord->created_at));
 
         if ($elapsedSeconds < self::RESEND_COOLDOWN_SECONDS) {
             return self::RESEND_COOLDOWN_SECONDS - $elapsedSeconds;
