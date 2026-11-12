@@ -1,9 +1,6 @@
 import { usePage } from '@inertiajs/react';
 
 export default function AppLogo() {
-    const { name } = usePage().props;
-    const appName = (name as string) || 'Universitas Ibn Khaldun';
-
     return (
         <>
             <div className="flex aspect-square size-8 items-center justify-center rounded-md overflow-hidden shrink-0">
@@ -15,7 +12,7 @@ export default function AppLogo() {
             </div>
             <div className="ml-1.5 grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">
-                    {appName}
+                    Universitas Ibn Khaldun
                 </span>
             </div>
         </>

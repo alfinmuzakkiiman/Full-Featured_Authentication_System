@@ -26,7 +26,7 @@ class OtpVerificationMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        $appName = config('app.name', 'Universitas Ibn Khaldun');
+        $appName = 'Universitas Ibn Khaldun';
         $subject = match ($this->purpose) {
             'invitation' => "Account Invitation Verification Code - {$appName}",
             'password_reset' => "Password Reset Verification Code - {$appName}",

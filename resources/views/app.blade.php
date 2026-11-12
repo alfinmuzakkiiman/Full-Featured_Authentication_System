@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @class(['dark' => ($appearance ?? 'system') == 'dark'])>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @class(['dark' => ($appearance ?? 'dark') !== 'light'])>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        {{-- Inline script to detect system dark mode preference and apply it immediately --}}
+        {{-- Inline script to set default to dark mode immediately --}}
         <script>
             (function() {
-                const appearance = '{{ $appearance ?? "system" }}';
+                const appearance = '{{ $appearance ?? "dark" }}';
 
-                if (appearance === 'system') {
-                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-                    if (prefersDark) {
+                if (appearance === 'light') {
+                    document.documentElement.classList.remove('dark');
+                } else if (appearance === 'system') {
+                    if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                        document.documentElement.classList.remove('dark');
+                    } else {
                         document.documentElement.classList.add('dark');
                     }
+                } else {
+                    document.documentElement.classList.add('dark');
                 }
             })();
         </script>
@@ -41,7 +45,7 @@
         @viteReactRefresh
         @vite(['resources/css/app.css', 'resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
         <x-inertia::head>
-            <title>{{ config('app.name', 'Laravel') }}</title>
+            <title>{{ config('app.name', 'Universitas Ibn Khaldun') }}</title>
         </x-inertia::head>
     </head>
     <body class="font-sans antialiased">
