@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// Public Landing Page
+// Root URL: redirect to dashboard (authenticated) or login (guest)
 Route::get('/', function (Request $request) {
     if ($user = $request->user()) {
         return $user->isAdmin()
@@ -22,7 +22,7 @@ Route::get('/', function (Request $request) {
             : redirect()->route('user.dashboard');
     }
 
-    return Inertia::render('welcome');
+    return redirect()->route('login');
 })->name('home');
 
 // Guest Authentication Routes
