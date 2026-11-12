@@ -22,3 +22,24 @@ test('new users can register and are redirected to OTP verification', function (
         'email_verified_at' => null,
     ]);
 });
+
+test('user can request a new registration OTP code via resend-otp', function () {
+    \Illuminate\Support\Facades\Mail::fake();
+
+    $user = \App\Models\User::factory()->create([
+        'email_verified_at' => null,
+    ]);
+
+    // Resend with pending_user_id in session
+    $response = $this->withSession(['pending_user_id' => $user->id])
+        ->post(route('verification.resend'), [
+            'email' => $user->email,
+        ]);
+
+    $response->assertRedirect();
+    $response->assertSessionHas('status');
+
+    \Illuminate\Support\Facades\Mail::assertSent(\App\Mail\OtpVerificationMail::class, function ($mail) {
+        return $mail->purpose === 'registration';
+    });
+});
