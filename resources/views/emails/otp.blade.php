@@ -12,6 +12,7 @@
                 <table width="100%" max-width="520px" style="max-width: 520px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); padding: 32px; border: 1px solid #e5e7eb;">
                     <tr>
                         <td style="text-align: center; padding-bottom: 24px;">
+                            <img src="{{ rtrim(config('app.url'), '/') }}/logo_uika/logo_uika.png" alt="Logo UIKA" width="80" style="width: 80px; height: auto; margin-bottom: 12px; display: inline-block;">
                             <h2 style="color: #111827; font-size: 24px; font-weight: 700; margin: 0;">Universitas Ibn Khaldun</h2>
                             <p style="color: #111827; font-size: 14px; font-weight: 600; margin-top: 6px;">
                                 @if($purpose === 'password_reset')
