@@ -41,8 +41,6 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
-    'show_demo_otp' => (bool) env('SHOW_DEMO_OTP', true),
-
     /*
     |--------------------------------------------------------------------------
     | Application URL

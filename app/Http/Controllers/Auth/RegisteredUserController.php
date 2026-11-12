@@ -56,16 +56,14 @@ class RegisteredUserController extends Controller
         ]);
 
         // Generate OTP and send via email
-        $otp = $this->otpService->generate($user, 'registration');
+        $this->otpService->generate($user, 'registration');
 
         // Store user ID in session for verification page
         $request->session()->put('pending_user_id', $user->id);
 
-        $status = 'Account created! A 6-digit verification code has been sent to your email.';
-        if (config('app.show_demo_otp')) {
-            $status .= " (Mode Demo OTP: {$otp['code']})";
-        }
-
-        return redirect()->route('verification.notice')->with('status', $status);
+        return redirect()->route('verification.notice')->with(
+            'status',
+            'Akun berhasil dibuat! Kode verifikasi 6-digit telah dikirimkan ke email Anda.'
+        );
     }
 }

@@ -125,13 +125,8 @@ class OtpVerificationController extends Controller
             ]);
         }
 
-        $otp = $this->otpService->generate($user, 'registration');
+        $this->otpService->generate($user, 'registration');
 
-        $status = 'A new 6-digit verification code has been sent to your email.';
-        if (config('app.show_demo_otp')) {
-            $status .= " (Mode Demo OTP: {$otp['code']})";
-        }
-
-        return back()->with('status', $status);
+        return back()->with('status', 'Kode verifikasi baru telah dikirimkan ke email Anda.');
     }
 }
